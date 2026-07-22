@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenHand — Coming to Northwest Arkansas</title>
+<style>
+  :root {
+    --bg: #201c17;
+    --surface: #2a2520;
+    --surface-raised: #342d25;
+    --text: #f5efe4;
+    --text-muted: #ab9d87;
+    --text-faint: #776b5c;
+    --accent: #c9a96e;
+    --accent-soft: rgba(201,169,110,0.14);
+    --accent-deep: #8b6f47;
+    --border: rgba(201,169,110,0.22);
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: Optima, "Century Gothic", "Segoe UI", system-ui, sans-serif;
+    --font-label: var(--font-body);
+  }
+
+  /* OpenHand is a dark-only product end to end — the app itself has no light
+     mode (userInterfaceStyle: dark). This page mirrors the app rather than
+     the OS, so it intentionally stays single-theme rather than inverting. */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body { line-height: 1.6; }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--accent); color: #1a1712; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- nav ---------- */
+  nav.top {
+    padding: 28px 0;
+  }
+  nav.top .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.3px;
+  }
+  .brand .mark {
+    width: 30px;
+    height: 30px;
+    display: block;
+  }
+  nav.top .locale {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    padding: 88px 0 96px;
+    position: relative;
+  }
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: -10% -10% auto -10%;
+    height: 640px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.16), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  header.hero .wrap { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 100px;
+    margin-bottom: 36px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 76px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    max-width: 18ch;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 20px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 56ch;
+  }
+
+  .cta-row {
+    margin-top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--accent);
+    color: #241f19;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #d6b87c; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  .hero-proof {
+    margin-top: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 40px;
+    color: var(--text-faint);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+  .hero-proof span { display: flex; align-items: center; gap: 8px; }
+  .hero-proof .glyph { color: var(--accent); }
+
+  /* ---------- section shell ---------- */
+  section { padding: 88px 0; border-top: 1px solid var(--border); }
+  .section-head { max-width: 62ch; margin-bottom: 56px; }
+  .section-label {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+  .section-dek {
+    margin-top: 18px;
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 58ch;
+  }
+
+  /* ---------- how it works ---------- */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+  }
+  .step .num {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--accent-deep);
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .step h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .step p { color: var(--text-muted); font-size: 15px; }
+
+  /* ---------- event mode ---------- */
+  .event-panel {
+    background: linear-gradient(155deg, var(--surface-raised), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .event-panel h2 { margin-bottom: 18px; }
+  .event-panel p.lede { color: var(--text-muted); font-size: 17px; margin-bottom: 28px; }
+  .offer-quote {
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .event-formats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .format-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .format-row:last-child { border-bottom: none; }
+  .format-row .name { color: var(--text); }
+  .format-row .why { color: var(--text-faint); text-align: right; max-width: 22ch; }
+
+  /* ---------- trust ---------- */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .trust-card { padding: 4px; }
+  .trust-card .glyph {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .trust-card h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .trust-card p { color: var(--text-muted); font-size: 15px; }
+
+  /* ---------- geography ---------- */
+  .geo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .geo-list { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+  .geo-list li { display: flex; gap: 16px; }
+  .geo-list .pin { color: var(--accent); font-family: var(--font-display); font-size: 15px; padding-top: 2px; min-width: 8ch; }
+  .geo-list .place b { display: block; color: var(--text); font-size: 16px; margin-bottom: 4px; }
+  .geo-list .place span { color: var(--text-muted); font-size: 14px; }
+
+  /* ---------- final cta ---------- */
+  .final-cta {
+    text-align: center;
+    padding: 100px 0 110px;
+  }
+  .final-cta h2 { max-width: none; margin: 0 auto 20px; }
+  .final-cta .section-dek { margin-left: auto; margin-right: auto; }
+  .final-cta .cta-row { justify-content: center; margin-top: 40px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 56px;
+    color: var(--text-faint);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 820px) {
+    .steps, .trust-grid, .geo { grid-template-columns: 1fr; }
+    .event-panel { grid-template-columns: 1fr; padding: 36px 28px; }
+    section { padding: 64px 0; }
+    header.hero { padding: 56px 0 64px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="24" r="13" stroke="#c9a96e" stroke-width="2"/>
+        <circle cx="29" cy="24" r="13" stroke="#c9a96e" stroke-width="2"/>
+      </svg>
+      OpenHand
+    </div>
+    <div class="locale">Northwest Arkansas</div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Now seeding the Bentonville–Rogers–Springdale–Fayetteville corridor</div>
+    <h1>Stop shopping<br>for <em>people.</em></h1>
+    <p class="hero-sub">OpenHand matches you in the background using your personality and what you actually bring to a relationship — not an endless stack of profiles to swipe through. Talk before photos. Know why you matched.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.openhand.app">Join the local pool →</a>
+      <a class="btn btn-secondary" href="#host">Host an OpenHand event</a>
+    </div>
+    <div class="hero-proof">
+      <span><span class="glyph">—</span> No browsing, no swiping</span>
+      <span><span class="glyph">—</span> Every match explained</span>
+      <span><span class="glyph">—</span> Conversation before photos</span>
+      <span><span class="glyph">—</span> Built for NWA communities</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">How it works</div>
+      <h2>Three steps, then you stop searching.</h2>
+      <p class="section-dek">There's no feed to scroll. You show up once, and OpenHand does the looking.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Complete your profile</h3>
+        <p>Your personality, and your Giving Profile — what you bring to a relationship, not just what you're looking for.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Live your life</h3>
+        <p>OpenHand searches quietly in the background. No daily swiping required to stay in the pool.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Get introduced, with reasons</h3>
+        <p>When there's a real fit, you're introduced — and told exactly why. Talk first; request a photo only when you're both ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="host">
+  <div class="wrap">
+    <div class="event-panel">
+      <div>
+        <div class="section-label">For organizers</div>
+        <h2>Bring a different kind of singles night.</h2>
+        <p class="lede">Event Mode is a free pilot for one NWA organizer, church, or venue. Attendees join with a private code and are matched only with others at your event.</p>
+        <p class="offer-quote">"We provide the private matching layer for your singles event. Attendees enter your event code, match only with other attendees, receive an explanation of why they fit, and can choose whether to start a conversation."</p>
+        <div class="cta-row" style="margin-top:32px;">
+          <a class="btn btn-primary" href="mailto:openhandapp@gmail.com?subject=Host%20an%20OpenHand%20event%20in%20NWA">Host an OpenHand event →</a>
+        </div>
+      </div>
+      <div class="event-formats">
+        <div class="format-row"><span class="name">Singles coffee / mocktail night</span><span class="why">Low cost, low pressure</span></div>
+        <div class="format-row"><span class="name">Board-game or trivia night</span><span class="why">Structure already there</span></div>
+        <div class="format-row"><span class="name">Young-professional mixer</span><span class="why">Existing venue &amp; crowd</span></div>
+        <div class="format-row"><span class="name">Church singles social</span><span class="why">Trust, serious intent</span></div>
+        <div class="format-row"><span class="name">Museum / arts singles night</span><span class="why">Strong NWA venue fit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Trust &amp; safety</div>
+      <h2>Built to feel safer than what you're used to.</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="glyph">＋</div>
+        <h3>Conversation before photos</h3>
+        <p>Meet the person before you judge the profile. Photos come later, and only by mutual request.</p>
+      </div>
+      <div class="trust-card">
+        <div class="glyph">◎</div>
+        <h3>Live, prompted photo exchange</h3>
+        <p>When both people are ready, the app opens the camera and asks for a live pose — current, consensual, hard to fake.</p>
+      </div>
+      <div class="trust-card">
+        <div class="glyph">✓</div>
+        <h3>Every match, explained</h3>
+        <p>No mystery score. You'll always know the actual reasons you and someone else were introduced.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="geo">
+      <div>
+        <div class="section-label">Where we're starting</div>
+        <h2>Northwest Arkansas first — on purpose.</h2>
+        <p class="section-dek">OpenHand isn't launching statewide. A concentrated local pool means real people, nearby, worth actually meeting — not installs scattered across a state with no one to match.</p>
+      </div>
+      <ul class="geo-list">
+        <li><span class="pin">Priority 1</span><span class="place"><b>Bentonville · Rogers · Springdale · Fayetteville</b><span>Young professionals, university-connected adults, active churches, board-game and arts venues.</span></span></li>
+        <li><span class="pin">Priority 2</span><span class="place"><b>Little Rock · North Little Rock</b><span>Singles ministries and young-professional networks — a second, separate local pool.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;">Ready when you are</div>
+    <h2>Your next match shouldn't depend on your best selfie.</h2>
+    <p class="section-dek">Join the founding NWA pool, or bring OpenHand to your community as an organizer.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.openhand.app">Join the local pool →</a>
+      <a class="btn btn-secondary" href="#host">Host an OpenHand event</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+    <span>OpenHand — Northwest Arkansas</span>
+    <span>Personality-informed matching · Privacy first · No browsing</span>
+  </div>
+</footer>
+
+</body>
+</html>
