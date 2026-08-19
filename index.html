@@ -278,6 +278,13 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
   }
+
+  /* ---------- differentiators ---------- */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
   .trust-card { padding: 4px; }
   .trust-card .glyph {
     width: 44px; height: 44px;
@@ -330,7 +337,7 @@
   }
 
   @media (max-width: 820px) {
-    .steps, .trust-grid, .geo { grid-template-columns: 1fr; }
+    .steps, .trust-grid, .geo, .diff-grid { grid-template-columns: 1fr; }
     .event-panel { grid-template-columns: 1fr; padding: 36px 28px; }
     section { padding: 64px 0; }
     header.hero { padding: 56px 0 64px; }
@@ -356,19 +363,41 @@
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Now seeding the Bentonville–Rogers–Springdale–Fayetteville corridor</div>
     <h1>Stop shopping<br>for <em>people.</em></h1>
-    <p class="hero-sub">OpenHand matches you in the background using your personality and what you actually bring to a relationship — not an endless stack of profiles to swipe through. Talk before photos. Know why you matched.</p>
+    <p class="hero-sub">OpenHand matches you in the background using your personality and your Giving Profile — what you actually bring to a relationship, weighted just as heavily as compatibility — not an endless stack of profiles to swipe through.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.openhand.app">Join the local pool →</a>
       <a class="btn btn-secondary" href="#host">Host an OpenHand event</a>
     </div>
     <div class="hero-proof">
       <span><span class="glyph">—</span> No browsing, no swiping</span>
+      <span><span class="glyph">—</span> Giving Profile, weighted equally</span>
       <span><span class="glyph">—</span> Every match explained</span>
-      <span><span class="glyph">—</span> Conversation before photos</span>
-      <span><span class="glyph">—</span> Built for NWA communities</span>
+      <span><span class="glyph">—</span> Event Mode for real gatherings</span>
     </div>
   </div>
 </header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">What makes OpenHand different</div>
+      <h2>Two things no swipe app does.</h2>
+      <p class="section-dek">Everything else on this page builds on these two.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="trust-card">
+        <div class="glyph">◐</div>
+        <h3>Giving Profile</h3>
+        <p>Matching doesn't stop at what you're looking for. Your Giving Profile — what you actually bring to a relationship — is weighted just as heavily as personality fit, not a secondary check.</p>
+      </div>
+      <div class="trust-card">
+        <div class="glyph">⬡</div>
+        <h3>Event Mode</h3>
+        <p>At a real event you attend, enter the code and match only with people who showed up — for as long as it's running. Afterward, you return to the regular NWA pool, same as everyone else.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
